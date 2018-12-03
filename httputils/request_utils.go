@@ -450,10 +450,10 @@ func ForceCloseResponse(resp *http.Response) {
 	}
 }
 
-func getNewUrl(alternateUrls []string, defaultUrl string) string {
-	for _, url := range alternateUrls {
-		newUrl := GetRedirectLocation(url)
-		if newUrl != url {
+func GetNewUrl(alternateUrls []string, defaultUrl string) string {
+	for _, uri := range alternateUrls {
+		newUrl := GetRedirectLocation(uri)
+		if newUrl != uri {
 			return newUrl
 		}
 	}
