@@ -17,7 +17,7 @@ var ProxyTestUrls = []string{
 	"https://bbs.com/robots.txt",
 	"https://twitter.com/favicon.ico",
 	"https://youtube.com/favicon.ico",
-	"httputils://www.hao123.com/robots.txt"}
+	"https://www.hao123.com/robots.txt"}
 
 type TrafficController struct {
 	workingCount int

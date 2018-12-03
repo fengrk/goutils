@@ -39,7 +39,7 @@ func newHTTP(uri *url.URL, forward proxy.Dialer) (proxy.Dialer, error) {
 }
 
 func (s *httpProxy) Dial(network, addr string) (net.Conn, error) {
-	// Dial and create the httputils client connection.
+	// Dial and create the http client connection.
 	c, err := s.forward.Dial("tcp", s.hostPort)
 	if err != nil {
 		return nil, err
@@ -52,8 +52,8 @@ func (s *httpProxy) Dial(network, addr string) (net.Conn, error) {
 		return nil, err
 	}
 	
-	// HACK HACK HACK HACK.  httputils.ReadRequest also does this.
-	reqURL, err := url.Parse("httputils://" + addr)
+	// HACK HACK HACK HACK.  http.ReadRequest also does this.
+	reqURL, err := url.Parse("http://" + addr)
 	if err != nil {
 		conn.httpConn.Close()
 		return nil, err
@@ -131,6 +131,6 @@ func (c *httpConn) SetWriteDeadline(t time.Time) error {
 }
 
 func init() {
-	proxy.RegisterDialerType("httputils", newHTTP)
+	proxy.RegisterDialerType("http", newHTTP)
 	proxy.RegisterDialerType("https", newHTTP) // can work
 }

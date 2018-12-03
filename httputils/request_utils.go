@@ -117,7 +117,7 @@ func (client *GlobalClientCache) CreateHttpClient(proxyAddr string, timeout time
 				return nil, fmt.Errorf("error found in proxyAddr[%s]: %v", proxyAddr, err)
 			}
 			
-			// socks5, httputils, https: use baseDialer and proxyDialer
+			// socks5, http, https: use baseDialer and proxyDialer
 			proxyDialer, err = proxy.FromURL(proxyUrl, baseDialer)
 			if err != nil {
 				return nil, fmt.Errorf("error found in proxyAddr[%s]: %v", proxyAddr, err)
@@ -184,7 +184,7 @@ func GetIPAndPort(url *url.URL) (string, int) {
 }
 
 func SetGlobalDnsCache() {
-	// set default client for httputils package
+	// set default client for http package
 	DefaultGlobalClientCache.SetGlobalDNSResolver()
 }
 
